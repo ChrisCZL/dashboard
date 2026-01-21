@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 
 export default function Calendar() { // stores all dates where a tast is completed, format "YYYY-MM-DD"
   const [completedDays, setCompletedDays] = useState([]);
+  
+  const streak = getStreakCount(completedDays);
 
   // current date info for building the Calendar
   const today = new Date();
@@ -54,6 +56,7 @@ const getStreakCount = (days) => {
 
   return (
     <>
+      <h4 className="streak"> {streak} day streak</h4>
       <button onClick={markTodayComplete}>mark today complete</button>
       <div className="calendar">
       {[...Array(daysInMonth)].map((_, i) => {

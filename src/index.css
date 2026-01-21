@@ -86,3 +86,7 @@ li button {
     gap: 20px;
   }
   
+  .streak {
+      font-weight: bold;
+      margin-bottom: 10px;
+  }
