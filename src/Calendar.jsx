@@ -3,7 +3,25 @@ import { useState, useEffect } from "react";
 export default function Calendar() { // stores all dates where a tast is completed, format "YYYY-MM-DD"
   const [completedDays, setCompletedDays] = useState([]);
   
-  const streak = getStreakCount(completedDays);
+  // streak component
+  const getStreakCount = (days) => {
+    let streak = 0;
+    let current = new Date();
+    
+    while (true) {
+      const dateStr = current.toISOString().split("T")[0];
+      
+      if (days.includes(dateStr)) {
+        streak++;
+        current.setDate(current.getDate() - 1);
+      } else {
+        break;
+      }
+    }
+    return streak;
+  };
+  
+   const streak = getStreakCount(completedDays);
 
   // current date info for building the Calendar
   const today = new Date();
@@ -30,24 +48,6 @@ useEffect(() => {
 useEffect(() => {
   localStorage.setItem("completedDays", JSON.stringify(completedDays));
 }, [completedDays]);
-
-// streak component
-const getStreakCount = (days) => {
-  let streak = 0;
-  let current = new date();
-  
-  while (true) {
-    const dateStr = current.toISOString().split("T")[0];
-    
-    if (days.includes(dateStr)) {
-      streak++;
-      current.setDate(current.getDate() - 1);
-    } else {
-      break;
-    }
-  }
-  return streak;
-};
 
 
 
