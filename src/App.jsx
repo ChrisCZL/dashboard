@@ -1,9 +1,15 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Calendar from "./Calendar";
 import Checklist from "./Checklist";
 
 export default function App() {
   const [isDark, setIsDark] = useState(false);
+  
+  useEffect(() => {
+    document.body.classList.toggle("dark", isDark);
+  }, [isDark]);
+
+  
   return (
     <>
       <div className={`app ${isDark ? "dark" : ""}`}>

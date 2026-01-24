@@ -10,7 +10,7 @@ body {
     sans-serif;
   background-color: #f5f5f5;
   color: #222;
-  padding: 10px;
+  margin: 0;
 }
 
 /* ===== Dashboard layout ===== */
@@ -114,4 +114,9 @@ li button {
   
   .app.dark .green {
     background: #2e7d32;
+  }
+  
+  body.dark {
+      background-color: #121212;
+      color: #f5f5f5;
   }
