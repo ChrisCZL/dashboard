@@ -15,8 +15,15 @@ export default function App() {
       <div className={`app ${isDark ? "dark" : ""}`}>
         <button onClick={() => setIsDark(!isDark)}>{isDark ? 'Light Mode' : 'Dark Mode'}</button>
         <h2>Dashboard</h2>
+        
+        <div className="card">
         <Calendar />
+        </div>
+        
+        <div className="card">
         <Checklist />
+        </div>
+        
       </div>
     </>
   );
