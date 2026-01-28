@@ -136,3 +136,15 @@ li button {
     background: #1e1e1e;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
   }
+
+  /* weekdays */
+  
+  .weekday {
+      text-align: center;
+      font-weight: bold;
+      color: #666;
+  }
+  
+  .app.dark .weekday {
+      color: #aaa;
+  }

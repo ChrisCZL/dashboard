@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 
 export default function Calendar() { // stores all dates where a tast is completed, format "YYYY-MM-DD"
   const [completedDays, setCompletedDays] = useState([]);
+   const weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   
   // streak component
   const getStreakCount = (days) => {
@@ -30,7 +31,10 @@ export default function Calendar() { // stores all dates where a tast is complet
 
   // number of days in the current month
   const daysInMonth = new Date(year, month + 1, 0).getDate();
+  const firstDayOfMonth = new Date(year, month, 1).getDay(); // find the weekday of the first month
 
+    
+  
   // marks today as completed and adds it to state if not already present
   const markTodayComplete = () => {
     const dateStr = today.toISOString().split("T")[0]; // Convert today's date into a stable string for comparison/storage
@@ -59,22 +63,34 @@ useEffect(() => {
       <h4 className="streak"> {streak} day streak</h4>
       <button onClick={markTodayComplete}>mark today complete</button>
       <div className="calendar">
-      {[...Array(daysInMonth)].map((_, i) => {
-        const date = new Date(year, month, i + 1);
-        const dateStr = date.toISOString().split("T")[0];
+        <div className="calendar">
+          {weekDays.map((day) => (
+            <div key={day} className="weekday">
+              {day}
+            </div>
+          ))}
         
-        const completed = completedDays.includes(dateStr);
+          {[...Array(firstDayOfMonth)].map((_, i) => (
+            <div key={`empty-${i}`} />
+          ))}
         
-        return (
-          <div
-            key={i}
-            className={`day ${completed ? "green" : ""}`}
-          >
-            {i + 1}
-          </div>
-        );
-      })}
-    </div>
+          {[...Array(daysInMonth)].map((_, i) => {
+            const date = new Date(year, month, i + 1);
+            const dateStr = date.toISOString().split("T")[0];
+            const completed = completedDays.includes(dateStr);
+        
+            return (
+              <div
+                key={i}
+                className={`day ${completed ? "green" : ""}`}
+              >
+                {i + 1}
+              </div>
+            );
+          })}
+        </div>
+
+      </div>
   </>
 );
 };
