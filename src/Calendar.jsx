@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
-export default function Calendar() { // stores all dates where a tast is completed, format "YYYY-MM-DD"
-  const [completedDays, setCompletedDays] = useState([]);
+export default function Calendar({ completedDays, setCompletedDays }) { // stores all dates where a tast is completed, format "YYYY-MM-DD"
+ // const [completedDays, setCompletedDays] = useState([]);
    const weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   
   // streak component
@@ -78,6 +78,12 @@ useEffect(() => {
             const date = new Date(year, month, i + 1);
             const dateStr = date.toISOString().split("T")[0];
             const completed = completedDays.includes(dateStr);
+            
+            <Calendar
+              completedDays={completedDays}
+
+            />
+
         
             return (
               <div
